@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test paczki scorm</title>
+	 <script src="SCORM_API_wrapper.js"></script>
+	<script>
+var scorm = pipwerks.SCORM;
+function initializeSCORM() {
+  var result = scorm.init();
+  var resultMin = scorm.init();
+  var resultMax = scorm.init();	
+  var resultStatus = scorm.init();		
+
+  if (result) {
+    console.log("API SCORM zainicjalizowane");
+    // Kontynuuj działanie kursu
+  } else {
+    console.error("Błąd inicjalizacji API SCORM");
+    // Obsłuż błąd inicjalizacji
+  }
+}
+function sendScoreToLMS(score, minScore, maxScore, passScore) {
+  // Check if the score is within the specified range
+  if (score < minScore || score > maxScore) {
+    console.error("Błąd: Nieprawidłowy wynik testu");
+    // Handle the error for an invalid score
+    return;
+  }
+
+  var result = scorm.set("cmi.core.score.raw", score);
+  if (score >= passScore) {
+    scorm.status("set", "passed");
+  } else {
+    scorm.status("set", "failed");
+  }
+
+  if (result) {
+    console.log("Wynik testu wysłany do LMS: " + score);
+    // Continue with course flow
+  } else {
+    console.error("Błąd podczas wysyłania wyniku testu do LMS");
+    // Handle the error while sending the score
+  }
+
+  scorm.save(); // Save changes to the LMS
+}
+function finishSCORM() {
+  var result = scorm.quit();
+
+  if (result) {
+    console.log("Sesja SCORM zakończona");
+    // Wykonaj czynności po zakończeniu sesji
+  } else {
+    console.error("Błąd podczas zamykania sesji SCORM");
+    // Obsłuż błąd zamykania sesji
+  }
+}
+</script>
+</head>
+<body>
+  <h1>Test paczki scorm</h1>
+  <button onclick="initializeSCORM()">1. Inicjalizuj</button>
+  <button onclick="sendScoreToLMS(80, 0, 100, 80)">2. Prześlij dane</button>
+  <button onclick="finishSCORM()">3. Zamknij</button>	
+</body>
+</html>

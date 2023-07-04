@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3"
+          xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3"
+          xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3"
+          xmlns:imsss="http://www.imsglobal.org/xsd/imsss"
+          xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_v1p2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          identifier="your_course_id"
+          xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1
+                              http://www.imsglobal.org/xsd/imscp_v1p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_v1p3
+                              http://www.adlnet.org/xsd/adlcp_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlseq_v1p3
+                              http://www.adlnet.org/xsd/adlseq_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlnav_v1p3
+                              http://www.adlnet.org/xsd/adlnav_v1p3.xsd
+                              http://www.imsglobal.org/xsd/imsss
+                              http://www.imsglobal.org/xsd/imsss_v1p0.xsd"
+          version="1.2">
+    <metadata>
+        <schema>ADL SCORM</schema>
+        <schemaversion>1.2</schemaversion>
+    </metadata>
+    <organizations default="your_organization_id">
+        <organization identifier="your_organization_id">
+            <title>Your Organization Title</title>
+            <item identifier="your_item_id" identifierref="your_resource_id">
+                <title>GRA</title>
+            </item>
+        </organization>
+    </organizations>
+    <resources>
+        <resource identifier="your_resource_id" type="webcontent" adlcp:scormtype="sco" href="index.html">
+            <file href="index.html"/>
+            
+            <!-- Dodaj inne pliki, zasoby i foldery tutaj -->
+        </resource>
+    </resources>
+</manifest>
